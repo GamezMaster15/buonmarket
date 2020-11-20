@@ -1,17 +1,28 @@
-<!-- Large modal -->
-<button type="button" class="btn btn-primary position-absolute" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
+{{#each links}}
+    <div class="modal fade imagen-modal-{{imagen}}"  style="z-index: 20000;" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content" style="background: #f0f0f0;">     
+                <button type="button" class=" position-absolute btn btn-secondary m-3" style="z-index: 15000;" data-dismiss="modal">X</button>
+                <div class="col-lg-8 col-12 mx-auto">
+                    <img src="/images/{{imagen}}" style="width:100%;">
+                </div>
+            </div>
+        </div>
+    </div>
+{{/each}}
+
 
 <div class="modal fade bd-example-modal-lg"  style="z-index:3500;" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title text-dark" id="exampleModalLabel" style="font-family: Bebas Neue, cursive;">Su Carrito <i class="fa fa-shopping-cart"></i></h4>
+        <h4 class="modal-title text-dark text-center col-6 mx-auto" id="exampleModalLabel" style="font-family: Bebas Neue, cursive;">Su factura</i></h4>
       </div>
-      <div class="modal-body">
-        <div class="row">
+      <div class="modal-body pt-0">
+        <div class="row mt-0">
           <div class="col-12 mx-auto">
-            <div class="row border-bottom">
-                <div class="col-5">
+            <div class="row mt-0 border-bottom">
+                <div class="col-5 mt-0">
                     <p class="mt-3" style="font-family: Bebas Neue, cursive;">Producto</p>
                 </div>
                 <div class="col-2 border-left"><p class="mt-3" style="font-family: Bebas Neue, cursive;">Precio</p></div>
@@ -20,16 +31,51 @@
 
                 </div>
             </div>
-            <div class="shoppingCartItemsContainer" style="height: 300px;overflow-y: scroll;">
+            {{#each cart}}
+                <form class="row border-bottom" action="/cart/uploads/{{id}}" method="POST">
+                    <div class="col-2 p-2">
+                        <img src="/images/{{imagen}}" style="width: 100%;">
+                    </div>
+                    <div class="col-3 my-auto">
+                        <p style="font-family: Bebas Neue, cursive;">{{producto}}</p>
+                    </div>
+                    <div class="col-2 my-auto" style="font-family: Bebas Neue, cursive;">
+                        ${{precio}}
+                    </div>
+                    <div class="col-2 my-auto" style="font-family: Bebas Neue, cursive;">
+                        <input type="number" name="cantidad" value="{{cantidad}}" class="form-control">
+                    </div>
+                    <div class="col-1 my-auto" style="font-family: Bebas Neue, cursive;">
+                        <a class="btn btn-danger p-3" href="/cart/delete/{{id}}"><i class="fa fa-trash"></i></a>            
+                    </div>
+                    <div class="col-1 my-auto" style="font-family: Bebas Neue, cursive;">
+                        <button class="btn btn-success"><i class="fa fa-redo text-white"></i></button>           
+                    </div>
+                    <div class="col-1 my-auto" style="font-family: Bebas Neue, cursive;">
+                        <input class="d-none" name="">            
+                    </div>
+                </form>
+            {{/each}}
+            <div class="row">
+                <div class="col-6 offset-6">
+                    <div class="row mt-3">
+                        <div class="col-2 offset-8">
+                            <h4 style="font-family: Bebas Neue, cursive;">TOTAL:</h4>
+                        </div>
+                        <div class="col-2">                            
+                            <h3 style="font-family: Bebas Neue, cursive;">${{costo}}</h3>
+                        </div>
+                    </div>
+                </div>
             </div>
           </div>  
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar Carrito</button>
-        <button type="button" class="btn btn-success text-white">Procesar Pago</button>
+      <div class="modal-footer">        
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar Carrito</button>
+        <a type="button" class="btn btn-primary text-white" href="/buy/{{costo}}">Procesar Pago</a>
       </div>
-    </div>
+    </form>
   </div>
   </div>
 </div>
@@ -52,9 +98,7 @@
           <div class="mx-auto text-center">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
-                <li><a href="/" class="nav-link" style="font-family: Bebas Neue, cursive;">TIENDA</a></li>
-                <li><a href="#courses-section" class="nav-link" style="font-family: Bebas Neue, cursive;">Ofertas</a></li>
-                <li><a href="#programs-section" class="nav-link" style="font-family: Bebas Neue, cursive;">Recetas</a></li>
+                <li><a href="/" class="nav-link" style="font-family: Bebas Neue, cursive;">Inicio</a></li>
                 <li><a href="/logout" class="nav-link" style="font-family: Bebas Neue, cursive;">Cerrar sesion</a></li>
               </ul>
             </nav>
@@ -119,14 +163,15 @@
                                 <div class="row">
                                     {{#each links}}
                                     <div class="col-lg-3 col-10 mx-auto mb-4">
-                                        <div class="row rounded border m-1 item" style="background: #f0f0f0;height: 400px;">
+                                        <form action="/cart/{{id}}" method="POST" class="row rounded border m-1 item" style="background: #f0f0f0;height: 400px;">
                                             <div class="col-12 mt-1 positio-relative">
+                                                <button type="button" class="col-9 position-absolute" data-toggle="modal" data-target=".imagen-modal-{{imagen}}" style="opacity:0;widht: 500px;height: 175px;margin-left: 15%;"></button>
                                                 <img src="/images/{{imagen}}" class="item-img" width="70%" style="margin-left: 15%;">
                                                 </img>
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <spam class="text-white text-right bg-dark rounded p-2 pl-2 pr-2 my-auto border-success item-price" style="font-size: 28px;font-family: Bebas Neue, cursive;font">
-                                                            ${{precioNum}}.00
+                                                            ${{precioNum}}
                                                         </spam>
                                                     </div>
                                                     
@@ -148,8 +193,8 @@
                                             <div class="col-5 offset-1">
                                                 <input class="form-control item-cant" name="cantidad" type="number" value="1"/>
                                             </div>     
-                                        </div>
-                                    </div>
+                                        </form>
+                                    </div>                                   
                                     {{/each}}                
                                 </div>
 

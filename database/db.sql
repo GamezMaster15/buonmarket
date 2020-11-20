@@ -1,6 +1,6 @@
-CREATE DATABASE life_nocturne;
 
-USE life_nocturne;
+
+USE buonmarket_database	;
 
 -- TABLE USER
 -- all pasword wil be encrypted using SHA1
