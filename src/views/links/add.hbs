@@ -1,0 +1,82 @@
+<style type="text/css">
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+@import '/css/style.css';
+
+</style>
+<div class="site-mobile-menu site-navbar-target bg-dark">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body bg-dark"></div>
+    </div>
+   
+    
+    <header class="site-navbar py-4 site-navbar-target" role="banner">
+      
+      <div class="container-fluid">
+        <div class="d-flex align-items-center">
+          <div class="site-logo mr-auto"><a href="index.html" class="text-warning" style="font-family: Bebas Neue, cursive;font-size: 32px;"><img src="/images/logo.png" style="width: 175px;" /></a></div>
+          <div class="ml-auto">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+              <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
+                {{#if user}}
+                  <li class="cta"><a href="/logout" class="nav-link"><span>Cerrar Sesion</span></a></li>
+                 {{/if}}
+                 <li class="cta"><a href="/signup" class="nav-link"><span class="background: #fb1f36;">Contactanos</span></a></li> 
+              </ul>
+            </nav>
+            <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-white float-right"><span class="icon-menu h3"></span></a>
+          </div>
+        </div>
+      </div>
+      
+    </header>
+<div class="intro-section" id="home-section">
+      
+      <div class="slide-1" style="background-image: url('images/hero_1.jpeg');" data-stellar-background-ratio="0.5">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-12">
+              <div class="row align-items-center">
+                <div class="col-lg-6 mb-2">
+                  <h1  data-aos="fade-up" data-aos-delay="100" style="font-family: Bebas Neue, cursive;">llegamos en un suanfunzoom</h1>
+                  <p class="mb-4"  data-aos="fade-up" data-aos-delay="200" style="font-family: Bebas Neue, cursive;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  <p data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn  py-3 px-5 btn-pill" style="font-family: Bebas Neue, cursive;background: #fb1f36;color: white;">Leer Más</a></p>
+
+                </div>
+
+                <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500">
+                  <div class="form-box row" >
+                    <h3 class="h4 text-black mb-4 text-center" style="font-family: Bebas Neue, cursive;">Agregar imagen</h3>
+                    <form action="/links/image/{{title}}" method="POST" class="row" enctype="multipart/form-data">
+                      <div class="form-group mb-4 col-12">
+                        <input type="file" class="form-control" style="font-family: Bebas Neue, cursive;" name="image">
+                      </div>
+                      <div class="form-group col-6">
+                        <input type="submit" class="btn btn-primary btn-pill form-control" value="Guardar">
+                      </div>
+                      <div class="form-group col-6">
+                        <a class="btn btn-danger btn-pill form-control" href="/admin">
+                          No Actualizar
+                        </a>  
+                      </div>
+                    </form>
+                  </div>
+
+                </div>
+              </div>              
+            </div> 
+          </div>          
+        </div>
+      </div>
+    </div> 
+ 

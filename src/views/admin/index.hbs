@@ -1,0 +1,151 @@
+<div class="site-wrap">
+    <div class="site-mobile-menu site-navbar-target bg-dark">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body bg-dark"></div>
+    </div>
+   
+    
+    <header class="site-navbar py-4 site-navbar-target" role="banner">
+      
+      <div class="container-fluid">
+        <div class="d-flex align-items-center">
+          <div class="site-logo mr-auto"><a href="index.html" class="text-warning" style="font-family: Bebas Neue, cursive;font-size: 32px;"><img src="/images/logo.png" style="width: 175px;" /></a></div>
+          <div class="mx-auto text-center">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+              <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
+                <li><a href="#home-section" class="nav-link" style="font-family: Bebas Neue, cursive;">inicio</a></li>
+                <li><a href="/links" class="nav-link" style="font-family: Bebas Neue, cursive;">Agregar Productos</a></li>
+                <li><a href="/logout" class="nav-link" style="font-family: Bebas Neue, cursive;">Cerrar sesion</a></li>
+              </ul>
+            </nav>
+          </div>
+          <div class="ml-auto">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+              <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
+                {{#if user}}
+                  <li class="cta"><a href="/logout" class="nav-link"><span><i class="fab fa-whatsapp"></i></span></a></li>
+                  {{else}}
+                 <li class="cta"><a href="/signup" class="nav-link"><span class="background: #fb1f36;">Contactanos</span></a></li> 
+                 {{/if}}
+              </ul>
+            </nav>
+            <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-white float-right"><span class="icon-menu h3"></span></a>
+          </div>
+        </div>
+      </div>
+      
+    </header>
+    <div class="intro-section" id="home-section">
+        <div class="slide-1" data-stellar-background-ratio="0.5" style="background-image: url('images/hero_1.jpg');">
+            {{#if links}}
+            <div class="container" data-aos="fade-up" data-aos-delay="500">
+                <div class="row align-items-center">
+                    <div class="col-12" style="margin-top: 100px;">
+                        <div class="row align-items-center mt-3">
+                            <div class="col-lg-12">
+                                <div class="row mb-5">
+                                    <div class="col-12 ml-1">
+                                        <form action="/search" class="row mx-auto" method="POST">
+                                            <div class="col-2 mr-0 pr-0">
+                                                <select class="form-control bg-transparent text-white" name="select" style="font-family:Bebas Neue, cursive;border: none;border-top: 1px solid rgba(255,255,255,0.5);border-left: 1px solid rgba(255,255,255,0.5);border-bottom: 1px solid rgba(255,255,255,0.5); border-radius: 0px;">
+                                                    <option class="text-dark" value="todos">
+                                                        Todos
+                                                    </option>
+                                                    <option class="text-dark" value="bebida espirituosa">
+                                                        Despensa
+                                                    </option>
+                                                    <option class="text-dark" value="combos">
+                                                        Snacks
+                                                    </option>
+                                                    <option class="text-dark" value="ron">
+                                                        Otros
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-9 mr-0 pr-0 pl-0">
+                                                <input class="form-control text-uppercase bg-transparent text-white" name="search" placeholder="Buscar en buon market" style="font-family:Bebas Neue, cursive;border: none;border-top: 1px solid rgba(255,255,255,0.5);border-bottom: 1px solid rgba(255,255,255,0.5); border-radius: 0px;" type="text">
+                                                </input>
+                                            </div>
+                                            <div class="col-1 ml-0 pl-0">
+                                                <button class="btn text-uppercase bg-transparent text-white" style="font-family:Bebas Neue, cursive;border: none;border-right: 1px solid rgba(255,255,255,0.5);
+                                border-top: 1px solid rgba(255,255,255,0.5);border-bottom: 1px solid rgba(255,255,255,0.5);border-radius: 0px;border-bottom-right-radius: 5px;border-top-right-radius: 5px;background: rgba(255,255,255,0.3);" type="submit">
+                                                    <i class="fa fa-search">
+                                                    </i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    {{#each links}}
+                                    <div class="col-lg-3 col-10 mx-auto mb-4">
+                                        <div class="row rounded border m-1 item" style="background: #f0f0f0;height: 400px;">
+                                            <div class="col-12 mt-1 positio-relative">
+                                                <img src="/images/{{imagen}}" class="item-img" width="70%" style="margin-left: 15%;">
+                                                </img>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <spam class="text-white text-right bg-dark rounded p-2 pl-2 pr-2 my-auto border-success item-price" style="font-size: 28px;font-family: Bebas Neue, cursive;font">
+                                                            ${{precioNum}}.00
+                                                        </spam>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mb-0 mt-1">
+                                                <p class="text-dark text-uppercase text-center mb-0 item-title" style="font-family: Bebas Neue, cursive;font-size: 16px;">
+                                                    {{titlepublic}}
+                                                </p>
+                                                <p class="text-center item-category mb-0" style="font-family: Bebas Neue, cursiva;color: #929191;">
+                                                    {{categoria}}
+                                                </p>
+                                            </div>
+                                            <input class="d-none" name="title" type="text" value="{{title}}" />
+                                            <input class="d-none" name="precioNum" type="text" value="{{precioNum}}" />
+                                            <div class="col-6">
+                                                <form action="/links/edit/{{id}}" method="GET">
+                                                    <button class="btn btn-success text-white mb-3">
+                                                        Editar
+                                                    </button>
+                                                </form>
+                                            </div>
+                                            <div class="col-5 offset-1">
+                                                <form action="/links/delete/{{id}}" method="GET">
+                                                    <button class="btn btn-danger text-white mb-3">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>     
+                                        </div>
+                                    </div>
+                                    {{/each}}                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{else}}
+                <div class="container" data-aos="fade-up" data-aos-delay="500">
+                    <div class="row align-items-center">
+                        <div class="col-lg-5 col-10  mx-auto">
+                            <div class="row p-4 bg-light border rounded">
+                                <div class="col-12 text-center">
+                                    <h3 style="font-family: Bebas Neue, cursive;">No hay productos publicados</h3>
+                                </div>
+                                 <div class="col-12 text-center">
+                                    <a class="btn btn-success text-white" style="font-family: Bebas Neue, cursive;" href="/links">Agregar PRoducto</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+
+</div>
